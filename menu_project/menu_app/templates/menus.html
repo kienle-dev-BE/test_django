@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menus</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            width: 45%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách 10 menus</h1>
+    <div class="container">
+        <div class="column">
+            <ul>
+                {% for menu in menus|slice:":5" %}
+                    <li>
+                        <strong>{{ forloop.counter }}. {{ menu.menu_code }}</strong><br>
+                        {% for element in menu.elements.all %}
+                            {{ element.element_code }}: {{ element.element_name }}<br>
+                        {% endfor %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="column">
+            <ul>
+                {% for menu in menus|slice:"5:" %}
+                    <li>
+                        <strong>{{ forloop.counter0|add:6 }}. {{ menu.menu_code }}</strong><br>
+                        {% for element in menu.elements.all %}
+                            {{ element.element_code }}: {{ element.element_name }}<br>
+                        {% endfor %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
